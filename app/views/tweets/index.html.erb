@@ -1,0 +1,99 @@
+<%= stylesheet_link_tag 'index', :media => "all" %>
+
+<section id="first-block">
+</section>
+
+<h4>Let's go to the cafe</h4>
+
+<div class="second-block">
+    <div class="cookie">
+      <%= image_tag 'coffee.png', class: 'event-image' %>
+      <%= link_to "行きたいカフェを診断する", perfumes_path, class:"btn-gradient-radius" %>
+    </div>
+
+    <div class="event">
+      <p class="info-text">
+        <span>誰でも使いやすいカフェ探しを手伝いたい。</span>
+      </p>
+        <span class="font-small">
+          忙しい日々にカフェのひとときを提供したい。そんな想いを持ってこのサイトを作ることにしました。ぜひ自分のアカウントを作って、カフェ生活を充実させてください。
+        </span>
+
+      <div class="brown">
+        <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+          <%= text_field_tag :search, placeholder= "店舗検索"  %>
+          <button type="submit">
+            <i class="fas fa-search fa-2x"></i>
+          </button>
+        <% end %>
+      </div>
+    </div>
+</div>
+
+
+<div class="third-block">
+  <p class="events-title">新着カフェ</p>
+
+  <div class="search">
+    <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+        <%= select_tag :tag_search, options_from_collection_for_select(@tag, "id","name") %>
+        <button type="submit">
+        <i class="fas fa-search fa-1x"></i>
+      </button>
+    <% end %>
+  </div>
+
+  <%= page_entries_info @tweets %>  
+
+  <div class="tweets-container">
+    <% @tweets.each do |t| %>
+
+      <div class="tweet">
+        <div class="main-box">
+          <div class="left-container">
+
+          <div class="picture">
+            <%= image_tag t.image_url, size: "316x200" if t.image?%>
+          </div>
+
+          <div class="btn-gradient">
+            <p><%= t.name %></p>
+          </div>
+
+           <p> <%= link_to t.user.name, user_path(t.user.id) %> </p>
+
+            <div>
+              <span class="star-rating">
+              <span class="star-rating-front" style="width: <%= getPercent(t.overall) %>%;">★★★★★</span>
+              <span class="star-rating-back">★★★★★</span>
+              </span> 
+            </div>
+
+              <% if user_signed_in? %>
+                  <% if current_user.already_liked?(t) %>
+                      <%= link_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
+                          <i class="fas fa-heart"></i><%= t.likes.count %>
+                      <% end %>
+                  <% else %>
+                      <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id), method: :post do %>
+                          <i class="fas fa-heart"></i><%= t.likes.count %>
+                      <% end %>
+                  <% end %>
+              <% else %>
+                  <i class="far fa-heart"></i><%= t.likes.count %>
+              <% end %>
+          </div>
+          <div class="right-container">
+            <%= link_to "詳細", tweet_path(t.id) %>
+          　<% if user_signed_in? && current_user.id == t.user_id %>  
+              <%= link_to "編集", edit_tweet_path(t.id) %>
+              <%= button_to "削除", tweet_path(t.id), method: :delete %>
+          　<% end %> 　
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= paginate @tweets %>
+</div>
+

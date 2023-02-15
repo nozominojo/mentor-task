@@ -1,0 +1,35 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.first-block {
+    height: 430px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 80px;
+}
+  
+.center {
+    width: 350px;
+ 	height: 350px;
+ 	overflow: hidden;
+	border-radius: 50%;
+    border: 1px solid #000000;
+    margin-left: 15%;
+  }
+
+.user-out{
+    margin-left: 20%;
+    color: black;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 7%;
+    text-decoration: none;
+    text-decoration-color: none;
+}
+
+a {
+    color:inherit;
+    }
+    

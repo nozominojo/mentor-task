@@ -1,0 +1,137 @@
+#first-block {
+  background-image: url("cafe.png");
+  background-size: cover;
+  width: 100%;
+  height: 650px;
+  opacity: 0.5;
+}
+
+h4{
+  font-family: 'Comfortaa', cursive;
+  font-family: 'Kosugi Maru', sans-serif;
+  position: absolute;
+  width: 402px;
+  height: 157px;
+  left: 99px;
+  top: 273px;
+  font-weight: 400;
+  font-size: 67px;
+  line-height: 80px;
+  color: #000000;
+}
+
+.second-block {
+  height: 330px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.cookie{
+  text-align: center;
+  padding-left: 10%;
+}
+
+.event-image {
+  width: 192px;
+  height: 192px;
+  padding-top: 40px;
+}
+
+.btn-gradient-radius {
+  display: inline-block;
+  padding: 7px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #FFF;
+  background-color: black;
+  border: solid 2px #000000;
+}
+
+.btn-gradient-radius:hover {
+  background-color: white;
+  border: solid 2px #000000;
+  color: black;
+}
+
+.btn-gradient{
+  display: inline-block;
+  padding: 3px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: black;
+  background-color: #E59E34;
+}
+
+.event{
+  padding-left: 18%;
+  padding-right: 5%;
+}
+
+.info-text {
+  font-weight: 100;
+  font-size: 23px;
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+
+.font-small {
+  font-size: 18px;
+}
+
+input[type="text"] {
+  width: 350px;
+  height: 30px;
+}
+
+.brown{
+  margin-top: 6%;
+}
+
+.third-block {
+  height: 1400px;
+  background-color: #f1f1f1;
+   text-align: center;
+}
+
+.events-title{
+  font-size: 46px;
+  line-height: 56px;
+  font-weight: lighter;
+  text-align: center;
+  padding-top: 5%;
+}
+
+.search{
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.tweets-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+}
+
+.tweet {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #444;
+  width: 21%;
+  background: #FFCF96;
+  border: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 34px;
+  text-align: center;
+  margin: 3%;
+}
+
+.picture{
+  width: 100%;
+  padding-top: 40px;
+}

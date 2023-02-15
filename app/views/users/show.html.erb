@@ -1,0 +1,85 @@
+<p class="events-title"> <%= @user.name %>のページ </p>
+
+<div class="first-block">
+
+    <div class="center"><%= image_tag @user.image_url, size: "350x350" if @user.image? %></div>
+
+    <% if current_user.id == @user.id %>
+    <%= link_to "プロフィールを編集する", edit_user_registration_path %>
+    <% end %>
+
+
+    <div class="user-out">
+
+    <% if @user.id == current_user.id %>
+        <%= @msg %>
+    <% else %>
+        <% if @isRoom == true %>
+        <i class="fa-regular fa-message"></i> <%= link_to 'DMページへ', room_path(@roomId) %>
+        <% else %>
+            <%= form_for @room do |f| %>
+                <%= fields_for @entry do |e|%>
+                    <% e.hidden_field :user_id, value: @user.id %>
+                <% end %>
+            <%= f.submit "DMを開始する"%>
+            <% end %>
+        <% end %>
+    <% end %>
+
+    <%= render 'relationships/follow_button', user: @user %>
+
+    </div>
+
+</div>
+
+<div class="third-block">
+  <p class="events-title"> <%= @user.name %>の投稿 </p>
+
+  <div class="tweets-container">
+  <% @user.tweets.each do |t| %>
+
+      <div class="tweet">
+        <div class="main-box">
+          <div class="left-container">
+
+          <div class="picture">
+             <%= image_tag t.image_url, size: "316x200" if t.image? %>
+          </div>
+
+          <div class="btn-gradient">
+            <p><%= t.name %></p>
+          </div>
+
+            <div>
+              <span class="star-rating">
+              <span class="star-rating-front" style="width: <%= getPercent(t.overall) %>%;">★★★★★</span>
+              <span class="star-rating-back">★★★★★</span>
+              </span> 
+            </div>
+
+              <% if user_signed_in? %>
+                  <% if current_user.already_liked?(t) %>
+                      <%= link_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
+                          <i class="fas fa-heart"></i><%= t.likes.count %>
+                      <% end %>
+                  <% else %>
+                      <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id), method: :post do %>
+                          <i class="fas fa-heart"></i><%= t.likes.count %>
+                      <% end %>
+                  <% end %>
+              <% else %>
+                  <i class="far fa-heart"></i><%= t.likes.count %>
+              <% end %>
+          </div>
+          <div class="right-container">
+            <%= link_to "詳細", tweet_path(t.id) %>
+          　<% if user_signed_in? && current_user.id == t.user_id %>  
+              <%= link_to "編集", edit_tweet_path(t.id) %>
+              <%= link_to "削除", tweet_path(t.id), method: :delete %>
+          　<% end %> 　
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

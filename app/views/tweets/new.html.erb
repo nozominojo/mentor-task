@@ -1,0 +1,65 @@
+<%= stylesheet_link_tag 'new', :media => "all" %>
+
+<div class="post-container">
+  <div class="post">
+    <%= form_for(@tweet, :url => { controller:'tweets', action:'create'})do |f| %>
+
+        <hr>
+
+          <%= f.label :場所 %>
+          <%= f.text_field :body, :size => 140 %>
+
+        <hr>
+
+          <%= f.label :店名 %>
+          <%= f.text_field :name, :size => 140 %>
+
+        <hr>
+
+          <%= f.label :住所 %>
+          <%= f.text_field :adress, :size => 140 %>
+
+        <hr>
+
+        <div class='form-group'>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+            <div class='form-check'>
+                <%= tag.label class: 'form-check-label' do %>
+                    <%= tag.check_box class: 'form-check-input' %>
+                    <%= tag.text %>
+                <% end %>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.file_field :image %>
+      </div>
+
+      <hr>
+
+      <div class="post_form">
+
+      <%= f.label :評価 %>
+      
+       <%= f.radio_button :overall, 5 ,id: 'star1'%>
+       <label for="star1">★</label>
+   
+       <%= f.radio_button :overall, 4 ,id: 'star2'%>
+       <label for="star2">★</label>
+   
+       <%= f.radio_button :overall, 3 ,id: 'star3'%>
+       <label for="star3">★</label>
+   
+       <%= f.radio_button :overall, 2 ,id: 'star4'%>
+       <label for="star4">★</label>
+   
+       <%= f.radio_button :overall, 1 ,id: 'star5'%>
+       <label for="star5">★</label>
+    </div>
+
+      <%= f.submit "カフェを投稿する"%>
+      </div>
+    <% end %>
+</div>
+

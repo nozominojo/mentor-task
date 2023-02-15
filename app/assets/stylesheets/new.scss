@@ -1,0 +1,47 @@
+.post-container {
+  position: relative;
+    margin: 50px auto;
+    width: 50%;
+    background-color: #F8DDBF;
+    text-align: center;
+    display: flex;
+  }
+
+  .post-container:before{/*疑似要素*/
+    position: absolute;
+    content: 'カフェを投稿する';
+    top: 0;
+    left: 0;
+    color: white;/*文字色*/
+    padding: 0.2em;/*余白*/
+    background: #E59E34;/*背景色*/
+    width: 300px;
+    height: 50px;
+    font-size: 30px;
+  }
+
+  hr {
+    display: block;
+    margin-block-start: 2.5em;
+    margin-block-end: 2.5em;
+    margin-inline-start: 5%;
+    margin-inline-end: 5%;
+    border-width: 1px;
+}
+  .post{
+  margin-top: 10%;
+  }
+
+  input[type="text"] {
+    width: 75%;
+    height: 30px;
+
+  }
+
+  input[type="submit"] {
+    width: 200px;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  
